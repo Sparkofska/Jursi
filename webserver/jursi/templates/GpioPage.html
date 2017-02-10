@@ -1,0 +1,93 @@
+{% extends "JursiBasePage.html" %}
+
+{% block title %}GPIO{% endblock %}
+{% block subtitle %}Low-Level control{% endblock %}
+
+{% block toolbar %}
+	{{ super() }}
+	<a href="https://3.bp.blogspot.com/-9dNQ-2NWBhc/Vt8shlUh1LI/AAAAAAAAABI/vc-q5OL92Y0/s1600/pi3_gpio.png"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Overview of pin assignment</a> <br/>
+	<!-- 
+	<button class="btn btn-primary" type="button">
+		<span class="glyphicon glyphicon-question-sign"></span> TODO
+	</button>
+	 -->
+{% endblock %}
+
+{% block content %}
+	<h2><span class="glyphicon glyphicon-lamp"></span> Light Control</h2>
+
+<script type=text/javascript>  
+  function go(id) {
+	  $.getJSON($SCRIPT_ROOT + '/gpio', {
+		  key: 'switch',
+		  which: id
+	  }, function(data) {
+		  if(data.status === 'high'){
+			  $('#' + id + ' span').addClass('glyphicon-check').removeClass('glyphicon-unchecked');
+		  }
+		  else if(data.status === 'low'){
+			  $('#' + id + ' span').addClass('glyphicon-unchecked').removeClass('glyphicon-check'); 
+		  }
+	  });
+  };
+</script>
+
+	<div class="list-group">
+	
+	  <div class="list-group-item">
+	  	<button id="light_chain" class="btn btn-primary" type="button" onclick="go('light_chain')">
+			<span class="glyphicon glyphicon-unchecked"></span>
+		</button>
+	  	<strong> Light Chain</strong>
+	  </div>
+	  
+	  <div class="list-group-item">
+	  	<button id="floor_lamp" class="btn btn-primary" type="button" onclick="go('floor_lamp')">
+			<span class="glyphicon glyphicon-unchecked"></span>
+		</button>
+	  	<strong> Floor Lamp</strong>
+	  </div>
+	  
+	</div>
+	
+
+
+	<h2><span class="glyphicon glyphicon-scale"></span> Sensor Readings</h2>
+	
+	<div class="list-group">
+	  <div class="list-group-item">Dapibus ac facilisis in</div>
+	  <div class="list-group-item">Morbi leo risus</div>
+	</div>
+
+
+
+
+
+
+
+
+
+<!-- 
+  <h2>GPIO Table</h2>
+	<p>
+		<a href="https://3.bp.blogspot.com/-9dNQ-2NWBhc/Vt8shlUh1LI/AAAAAAAAABI/vc-q5OL92Y0/s1600/pi3_gpio.png"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Overview of pin assignment</a> <br/>
+		This needs some fine work to continue:
+  	</p>
+  
+  <table class="table table-bordered">
+  <tr>
+    <td>pin 01 : 3.3V DC Power</td>
+    <td>pin 02 : 5V DC Power</td>
+  </tr>
+  <tr>
+    <td>pin 03 : GPIO02 <span id="status_pin03" class="glyphicon glyphicon-unchecked"></span></td>
+    <td>pin 04 : 5V DC Power</td>
+  </tr>
+  <tr>
+    <td>pin 05 : <span id="status_pin05" class="glyphicon glyphicon-check"></span></td>
+    <td>pin 06 : Ground</td>
+  </tr>
+</table>
+ -->
+  
+{% endblock %}

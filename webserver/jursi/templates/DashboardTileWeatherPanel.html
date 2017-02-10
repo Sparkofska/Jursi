@@ -1,0 +1,20 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Current Weather {% endblock %}
+
+{% block tile_heading_right %}
+<button type="button" class="btn btn-primary btn-xs">
+	<span class="glyphicon glyphicon-chevron-down"></span>
+	 Show
+</button>
+{% endblock %}
+
+{% block tile_body_content %}
+	<ul>
+		<li>Temperature</li>
+		<li>Humidity</li>
+		<li>Rain chance</li>
+	</ul>
+{% endblock %}

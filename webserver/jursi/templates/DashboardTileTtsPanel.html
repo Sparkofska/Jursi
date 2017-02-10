@@ -1,0 +1,26 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Text To Speech {% endblock %}
+
+{% block tile_body_content %}
+	Click this button to test the TTS output.
+{% endblock %}
+
+{% block tile_body_action %}
+<script type=text/javascript>
+  $(function() {
+    $('a#tts-btn').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/ajax_call', {
+        key: "testtts"
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+<a href="#" id="tts-btn" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Speak</a>
+<span id="result"></span>
+{% endblock %}

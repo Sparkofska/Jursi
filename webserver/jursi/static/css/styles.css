@@ -1,0 +1,23 @@
+.jursi-blue {
+	color: blue;
+}
+
+.jursi-footer {
+	background-color: black;
+	color: #ccc;
+	text-align: center;
+}
+
+.jursi-debug-frame {
+	border: black solid 1px;
+}
+
+.jursi-toolbar {
+	padding-bottom: 9px;
+	padding-top: 20px;
+}
+
+.jursi-page-header {
+	margin-top: 0;
+	padding-left: 0;
+}

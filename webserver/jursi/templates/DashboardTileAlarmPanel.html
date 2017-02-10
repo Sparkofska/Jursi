@@ -1,0 +1,168 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Alarm {% endblock %}
+
+{% block tile_heading_right %}
+<!-- Badge shows time if alarm is set, 'off' otherwise. Button for turning alarm off is only visible when alarm is on. -->
+<button type="button" id="alarmBtnOff"
+	class="{{ 'invisible' if not status.is_alarm_on() }} btn btn-primary btn-xs"
+	onclick="deactivateAlarm()"
+	title="Turn alarm off">
+	<span class="glyphicon glyphicon-off"></span>
+</button>
+<span class="badge">
+		<span class="glyphicon glyphicon-bell"></span>
+		<span id="alarmtime">
+			{% if status.is_alarm_on() %}
+				{{ status.get_alarm_time_readable() }}
+			{% else %}
+			 off
+			{% endif %}
+		</span>
+	</span>
+{% endblock %}
+
+{% block tile_body_content %}
+	Set the Alarm to the desired time.
+	
+	
+	
+	
+	
+	
+	
+{% endblock %}
+
+{% block tile_body_action %}
+
+<script type=text/javascript>  
+  function deactivateAlarm() {
+	  $.getJSON($SCRIPT_ROOT + '/alarm', {
+		  key: "deactivate_alarm"
+	  }, function(data) {
+		  onAjaxUpdate(data.status); // call to JursiBasePage
+		  if (data.success) {
+		  	$('#alarmtime').text("off");
+		  	$('#alarmBtnOff').addClass("invisible");
+		  }
+		  else {
+			  alert("Something went wrong on server. TODO: put this into nice message and fix bug!");
+		  }
+	  });
+  };
+  
+  function setAlarm(mode, hour, min) {
+	  $.getJSON($SCRIPT_ROOT + '/alarm', {
+		  key: "set_alarm",
+		  mode: mode,
+		  hour: hour,
+		  min: min
+	  }, function(data) {
+		  onAjaxUpdate(data.status); // call to JursiBasePage
+		  if (data.success) {
+			  $('#alarmtime').text(data.status.alarm_time_readable);
+			  $('#alarmBtnOff').removeClass("invisible");
+		  }
+		  else {
+			  alert("Something went wrong on server. TODO: put this into nice message and fix bug!");
+		  }
+	  });
+  };
+  
+  function showErrorOnInput(elem) {
+	  console.log('Input in ' + elem.attr('id') + ' invalid');
+	  elem.parent().addClass('has-error');
+	  
+	  // remove error-sign when cursor reenters
+	  elem.focus(function(){
+		  elem.parent().removeClass('has-error');
+	  });
+  }
+  
+  function validateAndSubmitAlarmForm() {
+	  var hour = $('#alarmInputHour').val();
+	  var minute = $('#alarmInputMinute').val();
+	  // check if number and in range
+	  var valid = true;
+	  if (hour == null || hour == "" || isNaN(hour) || hour < 0 || hour > 23) {
+		  showErrorOnInput($('#alarmInputHour'));
+		  valid = false;
+	  }
+	  if (minute == null || minute == "" || isNaN(minute) || minute < 0 || minute > 59) {
+		  showErrorOnInput($('#alarmInputMinute'));
+		  valid = false;
+	  }
+	  if (valid) {
+		  // submit to server
+		  var mode = $('input[name=alarmInputMode]:checked', '#alarmForm').val();
+		  setAlarm(mode, hour, minute);
+	  }
+  }
+</script>
+
+
+
+
+
+
+<form id="alarmForm">
+	<div class="form-group">
+		<div class="radio">
+			<label> <input type="radio" name="alarmInputMode"
+				id="alarmInputModeAt" value="at" checked> at
+			</label>
+		</div>
+		<div class="radio">
+			<label> <input type="radio" name="alarmInputMode"
+				id="alarmInputModeIn" value="in"> in
+			</label>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="sr-only" for="alarmInputHour">Alarm hour</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="alarmInputHour"
+				placeholder="23" required>
+			<div class="input-group-addon">hour</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="alarmInputMinute">Alarm minute</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="alarmInputMinute"
+				placeholder="59" required>
+			<div class="input-group-addon">min.</div>
+		</div>
+	</div>
+	<div class="form-group pull-right">
+		<div class="input-group">
+
+			<!-- Split button -->
+			<div class="btn-group pull-right">
+				<button type="button" id="dLabel" class="btn btn-primary" onclick="validateAndSubmitAlarmForm()">
+					Set Alarm</button>
+				<button type="button" class="btn btn-primary dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="caret"></span> <span class="sr-only">Toggle
+						Dropdown</span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dLabel">
+					<li><a href="#" onclick="setAlarm('in', 0, 1)">in 1 min.</a></li>
+					<li><a href="#" onclick="setAlarm('in', 0, 20)">in 20 min.</a></li>
+					<li><a href="#" onclick="setAlarm('in', 0, 30)">in 30 min.</a></li>
+					<li><a href="#" onclick="setAlarm('in', 8, 0)">in 8 h.</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#" onclick="setAlarm('at', 7, 0)">at 7:00 am.</a></li>
+					<li><a href="#" onclick="setAlarm('at', 8, 0)">at 8:00 am.</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</form>
+
+
+{% endblock %}

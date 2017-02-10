@@ -1,0 +1,33 @@
+{% extends "JursiBasePage.html" %}
+
+{% block title %}Music{% endblock %}
+{% block subtitle %}
+	<span class="glyphicon glyphicon-music"><span>
+	<!-- <span class="glyphicon glyphicon-music"><span>
+	<span class="glyphicon glyphicon-glass"><span>
+	<span class="glyphicon glyphicon-heart"><span>
+	<span class="glyphicon glyphicon-star"><span>
+	<span class="glyphicon glyphicon-music"><span> -->
+{% endblock %}
+
+{% block toolbar %}
+	<div class="btn-toolbar" role="toolbar" aria-label="music toolbar">
+		<div class="btn-group btn-group-lg" role="group" aria-label="volume control">
+			<a href="/music?action=volume_down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-down"><span></a>
+			<a href="/music?action=volume_up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"><span></a>
+		</div>
+		<div class="btn-group btn-group-lg" role="group" aria-label="music control">
+			<a href="/music?action=play" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"><span></a>
+			<a href="/music?action=stop" type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"><span></a>
+			<a href="/music?action=next" type="button" class="btn btn-default"><span class="glyphicon glyphicon-forward"><span></a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+Zurück zum <a class="btn btn-warning btn-lg" href="/dashboard">Dashboard</a>.
+
+<hr/>
+
+
+{% endblock %}

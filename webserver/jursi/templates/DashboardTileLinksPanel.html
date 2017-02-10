@@ -1,0 +1,30 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Navigation Panel {% endblock %}
+
+{% block tile_heading_right %}
+	<span class="glyphicon glyphicon-link"></span>
+{% endblock %}
+
+{% block tile_body_content %}
+All the subpages of Jursi listed here:
+{% endblock %}
+
+{% block tile_body_action %}
+<!-- empty -->
+{% endblock %}
+
+{% block tile_additional_body %}
+<div class="list-group">
+	<div class="list-group-item">
+		<a href="/music"><span class="glyphicon glyphicon-music"></span> Music</a>
+	</div>
+	<div class="list-group-item">
+		<a href="/gpio"><span class="glyphicon glyphicon-wrench"></span> GPIO</a>
+	</div>
+</div>
+
+{% endblock %}
+

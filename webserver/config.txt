@@ -1,0 +1,2 @@
+[Jursi]
+music_dir = home/pi/Music/wakeup

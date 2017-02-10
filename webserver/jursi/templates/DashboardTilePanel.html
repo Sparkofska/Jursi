@@ -1,0 +1,22 @@
+<div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3">
+	<div class="panel panel-{% block contextual_alternative %}default{% endblock %}">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				{% block tile_heading_title %} {% endblock %}
+				<span class="pull-right">
+					{% block tile_heading_right %} {% endblock %}
+					
+				</span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			{% block tile_body_content %} {% endblock %}
+			<p>
+				{% block tile_body_action %} {% endblock %}
+			</p>
+		</div>
+		
+		{% block tile_additional_body %} {% endblock %}
+		
+	</div>
+</div>

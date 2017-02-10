@@ -1,0 +1,33 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Music {% endblock %}
+
+{% block tile_heading_right %}
+	<span class="glyphicon glyphicon-music"><span>
+{% endblock %}
+
+{% block tile_body_content %}
+	<div class="btn-toolbar" role="toolbar" aria-label="music toolbar">
+		<div class="btn-group btn-group" role="group" aria-label="volume control">
+			<a href="/music?action=volume_down" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-down"><span></a>
+			<a href="/music?action=volume_up" type="button" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"><span></a>
+		</div>
+		<div class="btn-group btn-group" role="group" aria-label="music control">
+			<a href="/music?action=play" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"><span></a>
+			<a href="/music?action=stop" type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"><span></a>
+			<a href="/music?action=next" type="button" class="btn btn-default"><span class="glyphicon glyphicon-forward"><span></a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block tile_body_action %}
+
+{% endblock %}
+
+{% block tile_additional_body %}
+
+
+{% endblock %}
+

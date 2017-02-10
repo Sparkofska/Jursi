@@ -1,0 +1,20 @@
+{% extends "JursiBasePage.html" %}
+
+{% block title %}Jursi{% endblock %}
+{% block subtitle %}{% endblock %}
+
+{% block toolbar %}{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col col-xs-12 col-sm-6 col-lg-4">
+			<p class="lead"><strong>Hello World!</strong> This is Jursi. Welcome on my web interface.</p>
+		</div>
+		<div class="col col-xs-12 col-sm-6 col-lg-4">
+			{% include 'LoginPanel.html' %}
+		</div>
+		<div class="col col-xs-12 col-sm-12 col-lg-4">	
+			<img class="img-responsive center-block" src="{{url_for('static', filename='grafic/logo_transp_512.png')}}" alt="Jursi-Logo">
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Jursi - {% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Jursi's css -->
+    <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    
+    <!-- own javascript -->
+    <script type=text/javascript>
+    	//ajax calls need to know where to call. So we give it the root adress
+		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+	</script>
+    
+  </head>
+  <body>
+      <div class="container">
+      
+      <!-- show flashed messages if there are any -->
+      {% with messages = get_flashed_messages() %}
+		{% if messages %}
+		  {% for message in messages %}
+		    <div class="alert alert-warning alert-dismissible" role="alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      {{message}}
+		    </div>
+		  {% endfor %}
+		{% endif %}
+      {% endwith %}
+      
+      	<div class="row">
+		<div class="col col-xs-12 col-sm-8 page-header jursi-page-header">
+			(<a href="/"><span class="glyphicon glyphicon-arrow-up"></span> Home</a>)
+			<h1>
+				{{ self.title() }} <small>{% block subtitle %}{% endblock %}</small>
+			</h1>
+		</div>
+		<div class="col col-xs-12 col-sm-4 jursi-toolbar">
+			<div class="pull-right">
+				{% block toolbar %}{% endblock %}
+			</div>
+		</div>
+	</div>
+
+      {% block content %}{% endblock %}
+      
+    </div>
+    
+    <footer class="jursi-footer">
+		<p>
+			Servertime: <span id="servertime">{{ status.get_datetime_readable() }}</span>
+		</p>
+	</footer>
+
+<script type=text/javascript>  
+function onAjaxUpdate(status) {
+	$('#servertime').text(status.datetime_readable);
+}
+</script>
+
+
+
+
+  </body>
+</html>
+
+

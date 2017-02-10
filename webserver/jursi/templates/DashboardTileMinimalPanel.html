@@ -1,0 +1,36 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Minimal Panel {% endblock %}
+
+{% block tile_heading_right %}
+<span class="badge">42</span>
+<button type="button" class="btn btn-primary btn-xs">
+	<span class="glyphicon glyphicon-fire"></span>
+	 Action
+</button>
+{% endblock %}
+
+{% block tile_body_content %}
+	A minimal but complete example, that can be copied and adapted to the custom usecase.
+{% endblock %}
+
+{% block tile_body_action %}
+<a class="btn btn-primary pull-right" type="button"> <span
+	class="glyphicon glyphicon-star"></span>Action
+</a>
+{% endblock %}
+
+{% block tile_additional_body %}
+<div class="list-group">
+	<div class="list-group-item">
+		First Item
+	</div>
+	<div class="list-group-item">
+		Second Item
+	</div>
+</div>
+
+{% endblock %}
+

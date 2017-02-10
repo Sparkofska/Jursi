@@ -1,0 +1,25 @@
+{% extends "JursiBasePage.html" %}
+
+{% block title %}Welcome{% endblock %}
+{% block subtitle %}
+	{{ current_user.username }}
+{% endblock %}
+
+{% block toolbar %}
+	{{ super() }}
+	<a href="{{ url_for('logout') }}" class="btn btn-primary"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+{% endblock %}
+
+{% block content %}
+  <h1>Dashboard</h1>
+  <p>
+  
+	<div class="row">
+		{% include 'DashboardTileLinksPanel.html' %}
+		{% include 'DashboardTileAlarmPanel.html' %}
+		{% include 'DashboardTileGpioPanel.html' %}
+		{% include 'DashboardTileMusicPanel.html' %}
+		{% include 'DashboardTileTtsPanel.html' %}
+	</div>
+
+{% endblock %}
