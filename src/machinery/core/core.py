@@ -12,9 +12,9 @@ from machinery.core.Status import status
 # Light Control
 from machinery.gpio import business
 
-PIN_MULTI_1 = 36 # Lamp
-PIN_MULTI_2 = 37 # Music speakers
-PIN_MULTI_3 = 38
+PIN_MULTI_1 = 37 # Baum-Lampe
+PIN_MULTI_2 = 38 # Schrank-Lampe
+PIN_MULTI_3 = 36
 PIN_MULTI_4 = 40
 business.gpio_handler.reserve_pin(PIN_MULTI_1, False)
 business.gpio_handler.reserve_pin(PIN_MULTI_2, False)

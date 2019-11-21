@@ -1,11 +1,10 @@
 {% extends "JursiBasePage.html" %}
 
-{% block title %}GPIO{% endblock %}
-{% block subtitle %}Low-Level control{% endblock %}
+{% block title %}Light switch{% endblock %}
+{% block subtitle %}The power in your hand{% endblock %}
 
 {% block toolbar %}
 	{{ super() }}
-	<a href="https://3.bp.blogspot.com/-9dNQ-2NWBhc/Vt8shlUh1LI/AAAAAAAAABI/vc-q5OL92Y0/s1600/pi3_gpio.png"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Overview of pin assignment</a> <br/>
 	<!-- 
 	<button class="btn btn-primary" type="button">
 		<span class="glyphicon glyphicon-question-sign"></span> TODO
@@ -32,20 +31,42 @@
   };
 </script>
 
-	<div class="list-group">
+
+	<div class="row">
 	
-	  <div class="list-group-item">
-	  	<button id="multi_1" class="btn btn-primary" type="button" onclick="go('multi_1')">
+	  <div class="col col-md-3 col-sm-6 col-xs-12">
+	  	<button id="multi_1" class="btn btn-primary btn-lg btn-block jursi-card-btn" type="button" onclick="go('multi_1')">
 			<span class="glyphicon glyphicon-unchecked"></span>
+	  	<strong> Baum-Lampe</strong>
 		</button>
-	  	<strong> Multiplug 1 (Baum-Lampe)</strong>
 	  </div>
 	  
+	  <div class="col col-md-3 col-sm-6 col-xs-12">
+      <button id="multi_2" class="btn btn-primary btn-lg btn-block jursi-card-btn" type="button" onclick="go('multi_2')">
+			<span class="glyphicon glyphicon-unchecked"></span>
+	  	<strong> Schrank-Lampe</strong>
+		</button>
+	  </div>
+
+	  <div class="col col-md-3 col-sm-6 col-xs-12">
+	  	<button id="multi_3" class="btn btn-primary btn-lg btn-block jursi-card-btn" type="button" onclick="go('multi_3')">
+			<span class="glyphicon glyphicon-unchecked"></span>
+	  	<strong> Test 3</strong>
+		</button>
+	  </div>
+	  
+	  <div class="col col-md-3 col-sm-6 col-xs-12">
+	  	<button id="multi_4" class="btn btn-primary btn-lg btn-block jursi-card-btn" type="button" onclick="go('multi_4')">
+			<span class="glyphicon glyphicon-unchecked"></span>
+	  	<strong> Test 4</strong>
+		</button>
+	  </div>
+    <!--
 	  <div class="list-group-item">
 	  	<button id="multi_2" class="btn btn-primary" type="button" onclick="go('multi_2')">
 			<span class="glyphicon glyphicon-unchecked"></span>
 		</button>
-	  	<strong> Multiplug 2 (Schrank-Lampe)</strong>
+	  	<strong> Multiplug 2 (Speaker)</strong>
 	  </div>
 	  
 	  <div class="list-group-item">
@@ -61,48 +82,9 @@
 		</button>
 	  	<strong> Multiplug 4</strong>
 	  </div>
-	  
+    -->
 
 	</div>
+  <hr/>
 	
-
-
-	<h2><span class="glyphicon glyphicon-scale"></span> Sensor Readings</h2>
-	
-	<div class="list-group">
-	  <div class="list-group-item">Dapibus ac facilisis in</div>
-	  <div class="list-group-item">Morbi leo risus</div>
-	</div>
-
-
-
-
-
-
-
-
-
-<!-- 
-  <h2>GPIO Table</h2>
-	<p>
-		<a href="https://3.bp.blogspot.com/-9dNQ-2NWBhc/Vt8shlUh1LI/AAAAAAAAABI/vc-q5OL92Y0/s1600/pi3_gpio.png"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Overview of pin assignment</a> <br/>
-		This needs some fine work to continue:
-  	</p>
-  
-  <table class="table table-bordered">
-  <tr>
-    <td>pin 01 : 3.3V DC Power</td>
-    <td>pin 02 : 5V DC Power</td>
-  </tr>
-  <tr>
-    <td>pin 03 : GPIO02 <span id="status_pin03" class="glyphicon glyphicon-unchecked"></span></td>
-    <td>pin 04 : 5V DC Power</td>
-  </tr>
-  <tr>
-    <td>pin 05 : <span id="status_pin05" class="glyphicon glyphicon-check"></span></td>
-    <td>pin 06 : Ground</td>
-  </tr>
-</table>
- -->
-  
 {% endblock %}

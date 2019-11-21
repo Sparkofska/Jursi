@@ -21,3 +21,9 @@
 	margin-top: 0;
 	padding-left: 0;
 }
+
+.jursi-card-btn {
+        padding-top    :2em;
+        padding-bottom :2em;
+        margin-bottom  :1em;
+}

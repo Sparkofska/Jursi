@@ -22,6 +22,10 @@ def index():
 def home():
 	return '<h1>Hello World!</h1><p>I am Jursi :) Do you need something?</p><a href="/login">Login</a></p>'
 
+@app.route('/light/')
+def light():
+    return render_template('LightswitchPage.html')
+
 @app.route('/dashboard/')
 @login_required
 def dashboard():
