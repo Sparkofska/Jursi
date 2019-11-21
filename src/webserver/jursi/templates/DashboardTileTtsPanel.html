@@ -22,5 +22,20 @@
   });
 </script>
 <a href="#" id="tts-btn" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Speak</a>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#tts-time-btn').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/ajax_call', {
+        key: "tellthetime"
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+<a href="#" id="tts-time-btn" class="btn btn-warning pull-right"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Tell the time</a>
+
 <span id="result"></span>
 {% endblock %}

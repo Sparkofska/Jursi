@@ -12,5 +12,7 @@ with app.app_context():
 	from jursi import read_config
 	g.config_params = read_config.parse()
 
+# start BackgroundJobs
+
 import jursi.views
 

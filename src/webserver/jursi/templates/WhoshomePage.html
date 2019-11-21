@@ -1,0 +1,23 @@
+{% extends "JursiBasePage.html" %}
+
+{% block title %}Who's Home?{% endblock %}
+{% block subtitle %}Scan Network devices{% endblock %}
+
+{% block toolbar %}
+	{{ super() }}
+	<button class="btn btn-primary" type="button">
+		<span class="glyphicon glyphicon-star"></span>No Action
+	</button>
+{% endblock %}
+
+{% block content %}
+  <h1>Found devices {{len}}</h1>
+  <p>
+    <dl>
+    {% for device in devices %}
+      <dt>{{ device[2] }}</dt>
+      <dd>{{ device[1] }}</dd>
+    {% endfor %}
+    </dl>
+  </p>
+{% endblock %}

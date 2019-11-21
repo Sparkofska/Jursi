@@ -1,0 +1,42 @@
+{% extends "DashboardTilePanel.html" %}
+
+{% block contextual_alternative %}default{% endblock %}
+
+{% block tile_heading_title %} Temperature {% endblock %}
+
+{% block tile_heading_right %}
+	<span class="glyphicon glyphicon-sunglasses"></span>
+{% endblock %}
+
+{% block tile_body_content %}
+	
+  <script type=text/javascript>  
+  function measureTemperature() {
+    $.getJSON($SCRIPT_ROOT + '/gpio', {
+      key: 'measureTemperature',
+    }, function(data) {
+    	$('#temperature-current').text(data.temperature);
+    	$('#humidity-current').text(data.humidity);
+    });
+  };
+</script>
+  
+  <table class="table table-hover">
+  <tr>
+    <td><strong>Temperature: </strong></td>
+    <td><span id="temperature-current"> °C</span></td>
+  </tr>
+  <tr>
+    <td><strong>Humidity: </strong></td>
+    <td><span id ="humidity-current"> %</span></td>
+  </tr>
+</table>
+
+{% endblock %}
+
+{% block tile_body_action %}
+<a id="temperature-btn" class="btn btn-primary pull-right" type="button" onclick="measureTemperature()"> <span
+	class="glyphicon glyphicon-dashboard"></span> Measure now
+</a>
+{% endblock %}
+

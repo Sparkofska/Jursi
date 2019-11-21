@@ -39,6 +39,11 @@ def music_view():
 	
 	return render_template('MusicPage.html') # TODO this should be an ajax call later on
 
+@app.route('/whoshome/')
+@login_required
+def whoshome_view():
+	devices = core.get_scanned_devices()
+	return render_template('WhoshomePage.html', len=len(devices), devices=devices)
 	
 @app.route('/alarm/')
 def alarm_view():
@@ -70,6 +75,13 @@ def gpio_view():
 		which = request.args.get('which', None, type=str)
 		res = core.light_switch(which)
 		return jsonify(res)
+	
+	elif key == 'measureTemperature':
+		temp, humi = core.get_temperature_humidity()
+		temp = '%.1f °C' % temp
+		humi = '%.1f %%' % humi
+		res = {'result':'measured temperature', 'temperature':temp, 'humidity':humi}
+		return jsonify(res)
  	
 	return jsonify(result="no function specified for key %s" % key)
 
@@ -85,6 +97,11 @@ def ajax_call():
 	elif key == 'testtts':
 		core.tts_hello()
 		return jsonify(result="Listen")
+
+	elif key == 'tellthetime':
+		exact = request.args.get('exact', False, type=bool)
+		core.tts_time(exact)
+		return jsonify(result='Time is told')
 	
 	return jsonify(result="no function specified for key %s" % key)
 
